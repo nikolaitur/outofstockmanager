@@ -1,3 +1,4 @@
 /vendor
 /queue
+/stores
 .env
