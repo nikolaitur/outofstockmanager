@@ -1,4 +1,4 @@
-Out Of Stock Manager Application for Shopify.
+#Out Of Stock Manager Application for Shopify.
 
 By Minion Made.
 
