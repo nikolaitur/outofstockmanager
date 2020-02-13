@@ -1,0 +1,45 @@
+[
+	{
+		"label": "Free",
+		"value": null,
+		"price": 0,
+		"price_label": "$0.00 / month",
+		"trial": 0,
+		"features": [
+			"<strong>100</strong> notifications sent each month",
+			"Customization without coding",
+			"Unlimited exports of emails, phone numbers and products"
+		]
+	},
+	{
+		"label": "Premium",
+		"value": "premium",
+		"price": 19,
+		"price_label": "$19.00 / month",
+		"trial": 7,
+		"features": [
+			"<strong>1000</strong> notifications sent each month",
+			"Customization without coding",
+			"Unlimited exports of emails, phone numbers and products",
+			"<strong>7 days</strong> trial",
+			"<strong>Access to all integrations like<br/>Mailchimp, Klaviyo, Nexmo, Twilio</strong>",
+			"<strong>Unlimited email & sms templates</strong>"
+		]
+	},
+	{
+		"label": "Pro",
+		"value": "pro",
+		"price": 29,
+		"price_label": "$29.00 / month",
+		"trial": 7,
+		"features": [
+			"<strong>Unlimited</strong> notifications sent each month",
+			"Customization without coding",
+			"Unlimited exports of emails, phone numbers and products",
+			"<strong>7 days</strong> trial",
+			"<strong>Access to all integrations like<br/>Mailchimp, Klaviyo, Nexmo, Twilio</strong>",
+			"<strong>Unlimited email & sms templates</strong>",
+			"<strong>Big High-Five from our Team!</strong>"
+		]
+	}
+]

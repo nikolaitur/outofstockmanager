@@ -1,0 +1,22 @@
+{
+    "autoload": {
+        "psr-4": {
+            "Minion\\": "minion/",
+            "App\\": "app/",
+            "MongoDB\\": "src/"
+        }
+    },
+    "require": {
+        "firebase/php-jwt": "^5.0",
+        "liquid/liquid": "^1.4",
+        "phpmailer/phpmailer": "^6.0",
+        "vlucas/phpdotenv": "^3.6",
+        "cocur/slugify": "^3.2",
+        "phpoffice/phpspreadsheet": "^1.10",
+        "rmccue/requests": "^1.7",
+        "nexmo/client": "^2.0",
+        "twilio/sdk": "^5.42",
+        "gkralik/php-uglifyjs": "1.0",
+        "mongodb/mongodb": "^1.5"
+    }
+}
