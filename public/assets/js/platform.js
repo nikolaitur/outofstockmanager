@@ -36,7 +36,7 @@ Vue.prototype.date_format = function(date) {
   d.getFullYear() + " || " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
   return datestring
 }
-Vue.prototype.admin_link = function(array) {
+Vue.prototype.access = function(array) {
   console.log(array)
   console.log(this)
   return true;
