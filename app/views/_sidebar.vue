@@ -41,7 +41,7 @@
 
     <ul>
       <li>
-        <a :class="{ 'active' : $root.view == 'install' }" @click.prevent="$root.view = 'install'"><i class='bx bx-code-alt'></i> Installation</a>
+        <a :class="{ 'active' : $root.view == 'install' }" @click.prevent="$root.view = 'install'"><i class='bx bx-code-alt'></i> Docs</a>
       </li>
       <li>
         <a :class="{ 'active' : $root.view == 'help' }" @click.prevent="$root.view = 'help'"><i class='bx bx-help-circle'></i> Help</a>
