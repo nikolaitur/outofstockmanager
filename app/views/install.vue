@@ -46,7 +46,7 @@
                   </div>
 
                   <div class="row">
-                    <strong class="q"><span class="badge badge-info">3</span> I use custom theme and OOSM doesn't work</strong>
+                    <strong class="q"><span class="badge badge-info">3</span> I use custom theme and OOSM doesn't work.</strong>
                     If your theme developer implemented different scripts to manage variant switcher, OOSM will not be able to detect when the unavailable variant was selected. <br/>
                     There are 2 solutions to this problem. First one is to watch the URL changes - use the code below if your theme updates URL parameter "variant" after changing product's variant.
 
@@ -66,6 +66,11 @@
                     <pre class="mt-2 mb-4" v-pre><strong>productId</strong> - id of the current product <br/>strong>variantId</strong> - id of the selected variant of the product <br/><strong>domEl</strong> - OOSM form dom element <br/>
                     </pre>
                     
+                  </div>
+
+                  <div class="row">
+                    <strong class="q"><span class="badge badge-info">5</span> I did everything but OOSM stil doesn't work.</strong>
+                    Please refer to support page <a @click.prevent="$root.view = 'help'">here</a>. We are loooking forward to help you out.
                   </div>
 
                 </div>
