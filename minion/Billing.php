@@ -156,7 +156,7 @@ Class Billing
 
     $billing = Local::get('billing');
 
-    if (isset($billing['id']) && $billing['id'] == $charge_id && $billing['status'] == 'accepted') {
+    if (isset($billing['id']) && $billing['id'] == $charge_id && $billing['status'] == 'pending') {
 
       $recurring_application_charge = [
         'recurring_application_charge' => [
