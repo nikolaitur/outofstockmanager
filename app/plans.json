@@ -22,7 +22,8 @@
 			"Send up to 250 notifications per month.",
 			"Up to 3 email notification templates.",
 			"Integration with Mailchimp & Klaviyo.",
-			"Export access."
+			"Export access.",
+			"Everything from Free plan"
 		]
 	},
 	{
@@ -34,7 +35,8 @@
 		"features": [
 			"Send up to 5000 notifications per month.",
 			"Unlimited email & sms notification templates.",
-			"Access all integrations including Nexmo & Twilio."
+			"Access all integrations including Nexmo & Twilio.",
+			"Everything from Free & Starter plans"
 		]
 	},
 	{
