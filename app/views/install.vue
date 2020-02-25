@@ -63,10 +63,7 @@
 
                     where
 
-                    <pre class="mt-2 mb-4" v-pre>
-                      <strong>productId</strong> - id of the current product <br/>
-                      <strong>variantId</strong> - id of the selected variant of the product <br/>
-                      <strong>domEl</strong> - OOSM form dom element <br/>
+                    <pre class="mt-2 mb-4" v-pre><strong>productId</strong> - id of the current product <br/>strong>variantId</strong> - id of the selected variant of the product <br/><strong>domEl</strong> - OOSM form dom element <br/>
                     </pre>
                     
                   </div>
