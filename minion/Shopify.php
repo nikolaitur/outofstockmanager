@@ -105,7 +105,7 @@ Class Shopify
     $curlOptions = [CURLOPT_RETURNTRANSFER => TRUE];
 
     if ($method == 'GET') {
-      if (!is_null($params)) {
+      if (!is_null($params) && count($params)) {
         $url = $url . "?" . http_build_query($params);
       }
     } else {

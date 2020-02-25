@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body pt-3" :class="{ 'updating': loading }">
+          <div class="card-body pt-3" :class="{ 'updating': loading }" v-if="$root.billingPlan.value && $root.billingPlan.status == 'active'">
             <div class="field">
               <div class="grid vcenter-xs">
                 <label class="mr-3 text-dark">Type:</label>
@@ -86,6 +86,18 @@
             <div class="mt-5 pb-2">
               <a class="btn btn-primary" @click.prevent="exportData">Export</a>
             </div>
+          </div>
+          <div class="card-body" v-else>
+
+            <div class="alert alert-danger d-inline-block">
+              <div class="grid vcenter-xs flex-nowrap">
+                <i class='icon bx bx-x-circle'></i>
+                <div class="message">
+                  Export feature is not available in your plan. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                </div>
+              </div>
+            </div>
+
           </div>
         </div>
 

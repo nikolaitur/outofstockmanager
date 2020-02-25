@@ -243,7 +243,7 @@ $minion->route('POST /billing/@', function($minion, $url) {
 
     if (!isset($res['errors'])) {
 
-      $confirmation = Billing::charge($res['recurring_application_charge'], $plan['value']);
+      $confirmation = Billing::charge($res['recurring_application_charge'], $data['plan']);
       Helpers::json(['redirect' => $confirmation]);
 
     } else {
