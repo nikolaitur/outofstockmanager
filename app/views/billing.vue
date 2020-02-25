@@ -19,7 +19,7 @@
         </div>
 
         <div class="pricing grid" v-else>
-          <div class="col-8-xs" v-for="el in list">
+          <div class="col-6-xs" v-for="el in list">
             <div class="column selected" :class="{ updating: updating == el.value }">
               <h2>{{ el.label }}</h2>
               <strong class="price">{{ el.price_label }}</strong>
