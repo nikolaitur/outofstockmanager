@@ -153,7 +153,7 @@ module.exports = {
           conditions: []
         }
 
-        if (!$root.billingPlan.value && this.list.length == 1) {
+        if (!this.$root.billingPlan.value && this.list.length == 1) {
           this.$root.showToast('No more templates can be added. Upgrade your plan.')
           return;
         }
