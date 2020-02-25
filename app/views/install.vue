@@ -50,7 +50,7 @@
                     If your theme developer implemented different scripts to manage variant switcher, OOSM will not be able to detect when the unavailable variant was selected. <br/>
                     There are 2 solutions to this problem. First one is to watch the URL changes - use the code below if your theme updates URL parameter "variant" after changing product's variant.
 
-                    <pre class="mt-2 mb-4">&lt;div class="mm-out-of-stock-manager_wrapper" data-id="URL" data-first="{{ product.selected_or_first_available_variant.id }}"&gt;&lt;/div&gt;</pre>
+                    <pre class="mt-2 mb-4" v-pre>&lt;div class="mm-out-of-stock-manager_wrapper" data-id="URL" data-first="{{ product.selected_or_first_available_variant.id }}"&gt;&lt;/div&gt;</pre>
                     Second option is to use triggers - check point 4 below.
                   </div>
 
@@ -63,12 +63,11 @@
 
                     where
 
-                    <pre class="mt-2 mb-4">
+                    <pre class="mt-2 mb-4" v-pre>
                       <strong>productId</strong> - id of the current product <br/>
                       <strong>variantId</strong> - id of the selected variant of the product <br/>
                       <strong>domEl</strong> - OOSM form dom element <br/>
                     </pre>
-
                     
                   </div>
 
