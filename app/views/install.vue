@@ -33,7 +33,7 @@
                     <pre class="mt-2"><strong>&lt;&lt;formId&gt;&gt;</strong> - id of the add-to-cart form</pre>
 
                     If your theme uses the standard form for adding to cart, you can use this code: 
-                    <pre class="mt-2">&lt;div class="mm-out-of-stock-manager_wrapper" data-id="product_form_&#123;&#123; product.id &#125;&#125;">&lt;/div&gt;</pre>
+                    <pre class="mt-2" v-pre>&lt;div class="mm-out-of-stock-manager_wrapper" data-id="product_form_{{ product.id }}">&lt;/div&gt;</pre>
                     </div>
                   </div>
               </div>
