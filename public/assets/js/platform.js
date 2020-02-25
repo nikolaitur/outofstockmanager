@@ -37,9 +37,8 @@ Vue.prototype.date_format = function(date) {
   return datestring
 }
 Vue.prototype.access = function(array) {
-  console.log(array)
-  console.log(this)
-  return true;
+  plan = window.billingPlan
+  return plan.value && plan.status == 'active' && array.indexOf(plan.value) != -1
 }
 
 new Vue({
