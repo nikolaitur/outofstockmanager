@@ -89,7 +89,7 @@
           </div>
           <div class="card-body" v-else>
 
-            <div class="alert alert-danger d-inline-block">
+            <div class="alert alert-danger d-inline-block alert-small">
               <div class="grid vcenter-xs flex-nowrap">
                 <i class='icon bx bx-x-circle'></i>
                 <div class="message">
