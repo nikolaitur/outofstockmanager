@@ -57,7 +57,7 @@
                   <div class="grid vcenter-xs flex-nowrap">
                     <i class='icon bx bx-x-circle'></i>
                     <div class="message">
-                      Export is not available in your current plan or it expired. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                      Mailchimp is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
                     </div>
                   </div>
                 </div>
@@ -103,7 +103,7 @@
                   <div class="grid vcenter-xs flex-nowrap">
                     <i class='icon bx bx-x-circle'></i>
                     <div class="message">
-                      Export is not available in your current plan or it expired. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                      Klaviyo is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
                     </div>
                   </div>
                 </div>
@@ -149,7 +149,7 @@
                   <div class="grid vcenter-xs flex-nowrap">
                     <i class='icon bx bx-x-circle'></i>
                     <div class="message">
-                      Export is not available in your current plan or it expired. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                      Nexmo is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
                     </div>
                   </div>
                 </div>
@@ -195,7 +195,7 @@
                   <div class="grid vcenter-xs flex-nowrap">
                     <i class='icon bx bx-x-circle'></i>
                     <div class="message">
-                      Export is not available in your current plan or it expired. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                      Twilio is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
                     </div>
                   </div>
                 </div>
