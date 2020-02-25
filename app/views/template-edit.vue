@@ -35,7 +35,7 @@
                       <div class="col-8-xs">
                         <a :class="{ active: tab == 'html' }" @click.prevent="tab = 'html'">HTML Code</a>
                       </div>
-                      <div class="col-8-xs">
+                      <div class="col-8-xs" v-if="access(['pro', 'unlimited'])">
                         <a :class="{ active: tab == 'sms' }" @click.prevent="tab = 'sms'">SMS</a>
                       </div>
                     </div>

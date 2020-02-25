@@ -93,7 +93,7 @@
               <div class="grid vcenter-xs flex-nowrap">
                 <i class='icon bx bx-x-circle'></i>
                 <div class="message">
-                  Export feature is not available in your plan. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                  Export is not available in your current plan or it expired. You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
                 </div>
               </div>
             </div>
