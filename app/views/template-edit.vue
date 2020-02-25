@@ -35,7 +35,7 @@
                       <div class="col-8-xs">
                         <a :class="{ active: tab == 'html' }" @click.prevent="tab = 'html'">HTML Code</a>
                       </div>
-                      <div class="col-8-xs" v-if="access(['pro', 'unlimited'])">
+                      <div class="col-8-xs">
                         <a :class="{ active: tab == 'sms' }" @click.prevent="tab = 'sms'">SMS</a>
                       </div>
                     </div>
@@ -47,13 +47,20 @@
                     </div>
                   </div>
                   <div class="tab pt-4" v-if="tab == 'sms'">
-                    <div class="field">
-                      <label>Sender (number or string, max 11 chars, no spaces)</label>
-                      <input class="mt-2 w-100" v-model="item.sms_from">
+                    <div v-if="access(['pro', 'unlimited'])">
+                      <div class="field">
+                        <label>Sender (number or string, max 11 chars, no spaces)</label>
+                        <input class="mt-2 w-100" v-model="item.sms_from">
+                      </div>
+                      <div class="field mt-3">
+                        <label>Message</label>
+                        <textarea v-model="item.sms" class="w-100 mt-2"></textarea>
+                      </div>
                     </div>
-                    <div class="field mt-3">
-                      <label>Message</label>
-                      <textarea v-model="item.sms" class="w-100 mt-2"></textarea>
+                    <div v-else>
+                      <div class="alert alert-danger d-inline-block alert-small"><div class="grid vcenter-xs flex-nowrap"><i class="icon bx bx-x-circle"></i> <div class="message">
+                        Export is not available in your current plan or it expired. You can upgrade it <a>here</a>.
+                      </div></div></div>
                     </div>
                   </div>
                 </div>

@@ -36,9 +36,11 @@ Vue.prototype.date_format = function(date) {
   d.getFullYear() + " || " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
   return datestring
 }
-Vue.prototype.access = function(array) {
+Vue.prototype.access = function(array = []) {
   plan = window.billingPlan
-  return plan.value && plan.status == 'active' && array.indexOf(plan.value) != -1
+  arrayCheck = array.length ? array.indexOf(plan.value) != -1 : true
+
+  return plan.value && plan.status == 'active' && arrayCheck
 }
 
 new Vue({

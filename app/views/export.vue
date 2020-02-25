@@ -22,7 +22,7 @@
               </div>
             </div>
           </div>
-          <div class="card-body pt-3" :class="{ 'updating': loading }" v-if="$root.billingPlan.value && $root.billingPlan.status == 'active'">
+          <div class="card-body pt-3" :class="{ 'updating': loading }" v-if="access">
             <div class="field">
               <div class="grid vcenter-xs">
                 <label class="mr-3 text-dark">Type:</label>
