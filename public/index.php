@@ -84,7 +84,14 @@ $minion->route('GET /', function($minion) {
 
     Billing::check();
 
-    $minion->view('admin', ['shop' => $params['shop'], 'host' => HOST, '_token' => $token, 'view' => $view, 'billing_plan' => Billing::plan()]);
+    $minion->view('admin', [
+      'shop' => $params['shop'], 
+      'host' => HOST, 
+      '_token' => $token, 
+      'view' => $view, 
+      'billing_plan' => Billing::plan(),
+      'limit' => Local::get('limit')
+    ]);
 
   }
 

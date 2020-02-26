@@ -53,6 +53,7 @@ new Vue({
     confirm: { active: false },
     shopURL: shopURL,
     billingPlan: window.billingPlan,
+    limit: window.limit,
     fetchHeaders: new Headers({
       'X-Shopify-Shop-Domain': window.xdomain,
       'X-Token': window.xtoken,

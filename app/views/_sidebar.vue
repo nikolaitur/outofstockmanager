@@ -6,6 +6,7 @@
       <div class="plan">Your current plan: <strong>{{ $root.billingPlan.label }}</strong> <a class="d-inline-block align-middle" @click.prevent="$root.view = 'billing'"><i class='ml-1 bx bx-cog'></i></a>
         <div class="mt-2" v-if="$root.billingPlan.trial">Trial ends on: <strong>{{ $root.billingPlan.trial }}</strong></div>
         <div class="mt-2" v-if="$root.billingPlan.value">Status: <strong>{{ $root.billingPlan.status }}</strong></div>
+        <div class="mt-2" v-if="$root.billingPlan.value != 'unlimited'">Notifications limit: <strong>{{ limit - $root.limit.value }}</strong> / <strong>{{ limit }}</strong></div>
       </div>
     </div>
 
@@ -51,5 +52,20 @@
 </template>
 
 <script>
-module.exports = {}
+module.exports = {
+  computed: {
+    limit: function() {
+      switch(this.$root.billingPlan.value) {
+        case 'starter':
+          return 250;
+          break;
+        case 'pro':
+          return 5000;
+          break;
+        default:
+          return 50;
+      } 
+    }
+  }
+}
 </script>
