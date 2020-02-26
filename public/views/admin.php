@@ -5,7 +5,7 @@ $shop = $data['shop'];
 $_token = $data['_token'];
 $view = $data['view'];
 $billing_plan = $data['billing_plan'];
-$limit = $data['limit'];
+$limits = $data['limits'];
 
 ?>
 
@@ -38,7 +38,7 @@ $limit = $data['limit'];
     window.xtoken = '<?php echo $_token; ?>';
     window.initView = '<?php echo $view; ?>';
     window.billingPlan = <?php echo json_encode($billing_plan); ?>;
-    window.limit = <?php echo json_encode($limit); ?>;
+    window.limits = <?php echo json_encode($limits); ?>;
 
   </script>
 </head>
