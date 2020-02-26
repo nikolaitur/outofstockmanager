@@ -90,7 +90,7 @@ $minion->route('GET /', function($minion) {
       '_token' => $token, 
       'view' => $view, 
       'billing_plan' => Billing::plan(),
-      'limit' => Local::get('limit')
+      'limit' => Local::get('limits')
     ]);
 
   }
