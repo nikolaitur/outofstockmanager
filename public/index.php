@@ -127,6 +127,15 @@ $minion->route('GET /auth/shopify/callback', function($minion) {
     
   }
 
+  if (!file_exists(DIR_STORES . $params['shop'] . '/limits.json')) {
+
+    Local::put('limits', ['notifications' => [
+      'date' => date('Y-m-d\TH:i:s'),
+      'value' => 0
+    ]]);
+    
+  }
+
   $minion->app->install();
 
   $homeUrl = HOST . '/?aftercallback=true&shop=' . $params['shop'];

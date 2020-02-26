@@ -70,7 +70,7 @@
 
                   <div class="row">
                     <strong class="q"><span class="badge badge-info">5</span> I did everything but OOSM still doesn't work.</strong>
-                    Please refer to support page <a @click.prevent="$root.view = 'help'">here</a>. We are loooking forward to help you out.
+                    Please refer to support page <a @click.prevent="$root.view = 'help'">here</a>. We are loooking forward to help you.
                   </div>
 
                 </div>
