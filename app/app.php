@@ -857,7 +857,7 @@ Class App
                 }
               }
 
-              if ($match) {
+              if ($match || !count($conditions)) {
 
                 $found = array_search($template['id'], array_column($rendered, 'id'));
 
@@ -918,7 +918,7 @@ Class App
                 }
               }
 
-              if ($match) {
+              if ($match || !count($conditions)) {
 
                 $found = array_search($template['id'], array_column($rendered_sms, 'id'));
 
