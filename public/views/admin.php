@@ -16,10 +16,9 @@ $limits = $data['limits'];
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://unpkg.com/boxicons@2.0.4/css/boxicons.min.css" rel='stylesheet'>
   <link rel="stylesheet" href="/assets/css/platform.css" />
-  <script src="/assets/js/vue-dev.js"></script>
-  <!-- <script src="/assets/js/vue.js"></script> -->
+  <script src="/assets/js/vue.js"></script>
   <script src="/assets/js/vue-loader.js"></script>
-  <script src="https://unpkg.com/v-calendar@1.0.1/lib/v-calendar.umd.min.js"></script>
+  <script src="/assets/js/v-calendar.js"></script>
   <script src="/assets/js/shopify.js"></script>
   <script src="/assets/js/jscolor.js"></script>
 
