@@ -6,24 +6,24 @@
 		"price_label": "$0.00 / month",
 		"trial": 0,
 		"features": [
-			"<strong>100</strong> notifications sent each month",
-			"Customization without coding",
-			"Unlimited exports of emails, phone numbers and products"
+			"Send up to 50 notifications per month.",
+			"Customizable form design.",
+			"Activity statistics.",
+			"1 email notification template."
 		]
 	},
 	{
-		"label": "Premium",
-		"value": "premium",
-		"price": 19,
-		"price_label": "$19.00 / month",
+		"label": "Starter",
+		"value": "starter",
+		"price": 12,
+		"price_label": "$12.00 / month",
 		"trial": 7,
 		"features": [
-			"<strong>1000</strong> notifications sent each month",
-			"Customization without coding",
-			"Unlimited exports of emails, phone numbers and products",
-			"<strong>7 days</strong> trial",
-			"<strong>Access to all integrations like<br/>Mailchimp, Klaviyo, Nexmo, Twilio</strong>",
-			"<strong>Unlimited email & sms templates</strong>"
+			"Send up to 250 notifications per month.",
+			"Up to 3 email notification templates.",
+			"Integration with Mailchimp & Klaviyo.",
+			"Export access.",
+			"Everything from Free plan"
 		]
 	},
 	{
@@ -33,13 +33,21 @@
 		"price_label": "$29.00 / month",
 		"trial": 7,
 		"features": [
-			"<strong>Unlimited</strong> notifications sent each month",
-			"Customization without coding",
-			"Unlimited exports of emails, phone numbers and products",
-			"<strong>7 days</strong> trial",
-			"<strong>Access to all integrations like<br/>Mailchimp, Klaviyo, Nexmo, Twilio</strong>",
-			"<strong>Unlimited email & sms templates</strong>",
-			"<strong>Big High-Five from our Team!</strong>"
+			"Send up to 5000 notifications per month.",
+			"Unlimited email & sms notification templates.",
+			"Access all integrations including Nexmo & Twilio.",
+			"Everything from Free & Starter plans"
+		]
+	},
+	{
+		"label": "Unlimited",
+		"value": "unlimited",
+		"price": 49,
+		"price_label": "$49.00 / month",
+		"trial": 7,
+		"features": [
+			"Unlimited notifications per month.",
+			"All features & functions."
 		]
 	}
 ]

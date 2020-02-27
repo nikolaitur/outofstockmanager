@@ -584,7 +584,7 @@ MMOOSM.trigger('hide', domEl)
 
 					if (data.product_id && data.variant_id) {
 						if (data.email || data.phone) {
-							var url = '//' + window.location.hostname + '/apps/call?' + self.params(data);
+							var url = '//' + window.location.hostname + '/apps/mm-oosm?' + self.params(data);
 							wrapper.classList.add('mm-out-of-stock-manager_loading', 'mm-out-of-stock-manager_disabled');
 							wrapper.querySelector('.mm-out-of-stock-manager_error').style.display = '';
 							self.request('POST', url, function(err, res) {
@@ -686,7 +686,7 @@ MMOOSM.trigger('hide', domEl)
 								action: 'track'
 							}
 
-							var url = '//' + window.location.hostname + '/apps/call?' + self.params(trackData);
+							var url = '//' + window.location.hostname + '/apps/mm-oosm?' + self.params(trackData);
 							self.request('POST', url, function(err, res) {})
 
 							cookieData[item.product_id].splice(vidIndex, 1)

@@ -84,7 +84,14 @@ $minion->route('GET /', function($minion) {
 
     Billing::check();
 
-    $minion->view('admin', ['shop' => $params['shop'], 'host' => HOST, '_token' => $token, 'view' => $view, 'billing_plan' => Billing::plan()]);
+    $minion->view('admin', [
+      'shop' => $params['shop'], 
+      'host' => HOST, 
+      '_token' => $token, 
+      'view' => $view, 
+      'billing_plan' => Billing::plan(),
+      'limits' => Local::get('limits')
+    ]);
 
   }
 
@@ -124,6 +131,15 @@ $minion->route('GET /auth/shopify/callback', function($minion) {
   if (!file_exists(DIR_STORES . $params['shop'] . '/billing.json')) {
 
     Local::put('billing', ['name' => 'Free']);
+    
+  }
+
+  if (!file_exists(DIR_STORES . $params['shop'] . '/limits.json')) {
+
+    Local::put('limits', ['notifications' => [
+      'date' => date('Y-m-d\TH:i:s'),
+      'value' => 0
+    ]]);
     
   }
 
@@ -173,7 +189,7 @@ $minion->route('POST /app/@', function($minion, $url) {
 
     if (isset($paths[0]) && $paths[0] == 'webhook') {
 
-      //Shopify::validateWebhook();
+      Shopify::validateWebhook();
 
     } else {
 
@@ -243,7 +259,7 @@ $minion->route('POST /billing/@', function($minion, $url) {
 
     if (!isset($res['errors'])) {
 
-      $confirmation = Billing::charge($res['recurring_application_charge'], $plan['value']);
+      $confirmation = Billing::charge($res['recurring_application_charge'], $data['plan']);
       Helpers::json(['redirect' => $confirmation]);
 
     } else {

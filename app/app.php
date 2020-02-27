@@ -558,6 +558,30 @@ Class App
   {
 
     $items = Local::get('templates');
+    $billing = Local::get('billing');
+
+    if (isset($billing['plan'])) {
+
+      if (isset($billing['status']) && $billing['status'] != 'active') {
+
+        $items = array_slice($items, 0, 1);
+
+      } else {
+
+        if ($billing['plan'] == 'starter') {
+
+          $items = array_slice($items, 0, 3);
+
+        }
+
+      }
+
+    } else {
+
+      $items = array_slice($items, 0, 1);
+
+    }
+
     $page = isset($_REQUEST['page']) ? $_REQUEST['page'] : 1;
 
     $cut = array_slice($items, $page * 21 - 21, $page * 21);
@@ -780,8 +804,32 @@ Class App
         $templates = Local::get('templates');
         $mails = [];
         $smses = [];
+        $billing = Local::get('billing');
 
         if (count($templates)) {
+
+          if (isset($billing['plan'])) {
+
+            if (isset($billing['status']) && $billing['status'] != 'active') {
+
+              $templates = array_slice($templates, 0, 1);
+
+            } else {
+
+              if ($billing['plan'] == 'starter') {
+
+                $templates = array_slice($templates, 0, 3);
+
+              }
+
+            }
+
+          } else {
+
+            $templates = array_slice($templates, 0, 1);
+
+          }
+
           $rendered = [];
           $rendered_sms = [];
 
@@ -809,7 +857,7 @@ Class App
                 }
               }
 
-              if ($match) {
+              if ($match || !count($conditions)) {
 
                 $found = array_search($template['id'], array_column($rendered, 'id'));
 
@@ -870,7 +918,7 @@ Class App
                 }
               }
 
-              if ($match) {
+              if ($match || !count($conditions)) {
 
                 $found = array_search($template['id'], array_column($rendered_sms, 'id'));
 
@@ -965,16 +1013,83 @@ Class App
 
         }
 
+        $limits = Local::get('limits');
+        $limit_notifications = $limits['notifications']['value'];
+
+        if (isset($billing['plan'])) {
+
+          if (isset($billing['status']) && $billing['status'] != 'active') {
+
+            $limit = 50 - $limit_notifications;
+
+          } else {
+
+            if ($billing['plan'] == 'starter') {
+
+              $limit = 250 - $limit_notifications;
+
+            }
+
+            if ($billing['plan'] == 'pro') {
+
+              $limit = 5000 - $limit_notifications;
+
+            }
+
+            if ($billing['plan'] == 'unlimited') {
+
+              $limit = 'unlimited';
+
+            }
+
+          }
+
+        } else {
+
+          $limit = 50 - $limit_notifications;
+
+        }
+
+        $remove_mails = [];
+        $remove_smses = [];
+
         foreach ($mails as $mail) {
-          Local::queue([
-            'shop' => $_SESSION['shop'],
-            'type' => 'email',
-            'data' => $mail
-          ]);
+          if ($limit === 'unlimited' || $limit > 0) {
+            Local::queue([
+              'shop' => $_SESSION['shop'],
+              'type' => 'email',
+              'data' => $mail
+            ]);
+
+            if ($limit !== 'unlimited') {
+              $limit = $limit - 1;
+              $remove_mails[] = $mail['email'];
+            }
+          }
         }
 
         foreach ($smses as $sms) {
-          $this->API('sms', $sms);
+          if ($limit === 'unlimited' || $limit > 0) {
+            $this->API('sms', $sms);
+
+            if (isset($billing['plan']) && $billing['plan'] == 'pro') {
+              if ($billing['status'] == 'active') {
+                $limit = $limit - 1;
+                $remove_smses[] = $mail['number'];
+              }
+            } else {
+              $remove_smses[] = $mail['number'];
+            }
+          }
+        }
+
+        if ($limit !== 'unlimited') {
+
+          $limit_mails_on = count($mails) > count($remove_mails);
+          $limit_smses_on = count($smses) > count($remove_smses);
+
+          $mails = array_slice($mails, 0, count($remove_mails));
+          $smses = array_slice($smses, 0, count($remove_smses));
         }
 
         $stats = Local::get('stats');
@@ -1009,9 +1124,57 @@ Class App
           $stats['numbers'] = $stats['numbers'] - count($smses);
         }
 
-        Helpers::db()->products->deleteOne(['_id' => $doc['_id']]);
+        if ($limit === 'unlimited') {
 
-        $stats['products'] = $stats['products'] - 1;
+          $delete = true;
+
+        } else {
+
+          if ($limit_mails_on || $limit_smses_on) {
+
+            $delete = false;
+
+          } else {
+
+            $delete = true;
+
+          }
+
+        }
+
+        if ($delete) {
+
+          Helpers::db()->products->deleteOne(['_id' => $doc['_id']]);
+
+          $stats['products'] = $stats['products'] - 1;
+
+        } else {
+
+          foreach ($item['emails'] as $key => $email) {
+            if (in_array($email['value'], $remove_mails)) {
+              unset($item['emails'][$key]);
+              $item['total_emails'] = $item['total_emails'] - 1;
+            }
+          }
+
+          foreach ($item['numbers'] as $key => $email) {
+            if (in_array($email['value'], $remove_smses)) {
+              unset($item['numbers'][$key]);
+              $item['total_numbers'] = $item['total_numbers'] - 1;
+            }
+          }
+
+          unset($item['_id']);
+
+          Helpers::db()->products->updateOne(
+            ['_id' => $doc['_id']],
+            ['$set' => $item]
+          );
+
+        }
+
+        $limits['notifications']['value'] = $limits['notifications']['value'] + count($mails) + count($smses);
+        Local::put('limits', $limits);
         Local::put('stats', $stats);
 
       }
@@ -1197,7 +1360,24 @@ Class App
 
       case 'subscribe':
 
-        if (isset($data['email'])) {
+        $billing = Local::get('billing');
+        $allow = true;
+
+        if (isset($billing['plan'])) {
+
+          if (isset($billing['status']) && $billing['status'] != 'active') {
+
+            $allow = false;
+
+          }
+
+        } else {
+
+          $allow = false;
+
+        }
+
+        if (isset($data['email']) && $allow) {
 
           if (Integrations::check('mailchimp')) {
             Local::queue([
@@ -1229,7 +1409,32 @@ Class App
 
       case 'sms':
 
-        if (isset($data['number'])) {
+        $billing = Local::get('billing');
+        $allow = true;
+
+        if (isset($billing['plan'])) {
+
+          if (isset($billing['status']) && $billing['status'] != 'active') {
+
+            $allow = false;
+
+          } else {
+
+            if ($billing['plan'] == 'starter') {
+
+              $allow = false;
+
+            }
+
+          }
+
+        } else {
+
+          $allow = false;
+
+        }
+
+        if (isset($data['number']) && $allow) {
 
           if (Integrations::check('nexmo')) {
             Local::queue([

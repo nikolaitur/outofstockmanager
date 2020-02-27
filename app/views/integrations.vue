@@ -26,7 +26,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body" :class="{ updating: integrations.mailchimp.updating || loading }">
+              <div class="card-body" :class="{ updating: integrations.mailchimp.updating || loading }" v-if="access(['starter', 'pro', 'unlimited'])">
                 <div class="field d-inline-block" :class="{ 'status-success' : integrations.mailchimp.active, 'status-danger' : !integrations.mailchimp.active }">
                   <div class="grid vcenter-xs">
                     <label class="mr-3">Active:</label>
@@ -52,6 +52,16 @@
                   <a class="btn btn-primary" @click.prevent="save('mailchimp')">Save</a>
                 </div>
               </div>
+              <div class="card-body" v-else>
+                <div class="alert alert-danger d-inline-block alert-small">
+                  <div class="grid vcenter-xs flex-nowrap">
+                    <i class='icon bx bx-x-circle'></i>
+                    <div class="message">
+                      Mailchimp is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-12-m">
@@ -65,7 +75,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body" :class="{ updating: integrations.klaviyo.updating || loading }">
+              <div class="card-body" :class="{ updating: integrations.klaviyo.updating || loading }" v-if="access(['starter', 'pro', 'unlimited'])">
                 <div class="field d-inline-block" :class="{ 'status-success' : integrations.klaviyo.active, 'status-danger' : !integrations.klaviyo.active }">
                   <div class="grid vcenter-xs">
                     <label class="mr-3">Active:</label>
@@ -88,6 +98,16 @@
                   <a class="btn btn-primary" @click.prevent="save('klaviyo')">Save</a>
                 </div>                
               </div>
+              <div class="card-body" v-else>
+                <div class="alert alert-danger d-inline-block alert-small">
+                  <div class="grid vcenter-xs flex-nowrap">
+                    <i class='icon bx bx-x-circle'></i>
+                    <div class="message">
+                      Klaviyo is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-12-m">
@@ -101,7 +121,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body" :class="{ updating: integrations.nexmo.updating || loading }">
+              <div class="card-body" :class="{ updating: integrations.nexmo.updating || loading }" v-if="access(['pro', 'unlimited'])">
                 <div class="field d-inline-block" :class="{ 'status-success' : integrations.nexmo.active, 'status-danger' : !integrations.nexmo.active }">
                   <div class="grid vcenter-xs">
                     <label class="mr-3">Active:</label>
@@ -124,6 +144,16 @@
                   <a class="btn btn-primary" @click.prevent="save('nexmo')">Save</a>
                 </div>                
               </div>
+              <div class="card-body" v-else>
+                <div class="alert alert-danger d-inline-block alert-small">
+                  <div class="grid vcenter-xs flex-nowrap">
+                    <i class='icon bx bx-x-circle'></i>
+                    <div class="message">
+                      Nexmo is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="col-12-m">
@@ -137,7 +167,7 @@
                   </div>
                 </div>
               </div>
-              <div class="card-body" :class="{ updating: integrations.twilio.updating || loading }">
+              <div class="card-body" :class="{ updating: integrations.twilio.updating || loading }" v-if="access(['pro', 'unlimited'])">
                 <div class="field d-inline-block" :class="{ 'status-success' : integrations.twilio.active, 'status-danger' : !integrations.twilio.active }">
                   <div class="grid vcenter-xs">
                     <label class="mr-3">Active:</label>
@@ -159,6 +189,16 @@
                 <div class="mt-5 pb-2">
                   <a class="btn btn-primary" @click.prevent="save('twilio')">Save</a>
                 </div>                
+              </div>
+              <div class="card-body" v-else>
+                <div class="alert alert-danger d-inline-block alert-small">
+                  <div class="grid vcenter-xs flex-nowrap">
+                    <i class='icon bx bx-x-circle'></i>
+                    <div class="message">
+                      Twilio is not available in your current plan or it expired. <br/>You can upgrade it <a @click.prevent="$root.view = 'billing'">here</a>.
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>

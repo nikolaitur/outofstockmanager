@@ -152,6 +152,16 @@ module.exports = {
           id: uniqid(),
           conditions: []
         }
+
+        if (!this.$root.billingPlan.value && this.list.length == 1) {
+          this.$root.showToast('No more templates can be added. Upgrade your plan.', true)
+          return;
+        }
+
+        if (this.access(['starter']) && this.list.length == 3) {
+          this.$root.showToast('No more templates can be added. Upgrade your plan.', true)
+          return;
+        }
       }
 
       this.$root.viewData = item

@@ -33,6 +33,21 @@ Class Minion
 
     }
 
+    $limits = Local::get('limits');
+    $now = time();
+    $limit_end = strtotime($limits['notifications']['date']);
+    $datediff = $now - $limit_end;
+    $limit = round($datediff / (60 * 60 * 24));
+
+    if ($limit > 30) {
+      $newdate = strtotime($limits['notifications']['date'] . ' + ' . (floor($limit/30) * 30 + 1) . ' days');
+      $limits['notifications'] = [
+        'date' => date('Y-m-d\TH:i:s', $newdate),
+        'value' => 0
+      ];
+      Local::put('limits', $limits);
+    }
+
     $classname = '\App\\app';
     $this->app = new $classname($this);
 

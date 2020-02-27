@@ -36,6 +36,12 @@ Vue.prototype.date_format = function(date) {
   d.getFullYear() + " || " + ("0" + d.getHours()).slice(-2) + ":" + ("0" + d.getMinutes()).slice(-2);
   return datestring
 }
+Vue.prototype.access = function(array = []) {
+  plan = window.billingPlan
+  arrayCheck = array.length ? array.indexOf(plan.value) != -1 : true
+
+  return plan.value && plan.status == 'active' && arrayCheck
+}
 
 new Vue({
   el: '#root',
@@ -47,6 +53,7 @@ new Vue({
     confirm: { active: false },
     shopURL: shopURL,
     billingPlan: window.billingPlan,
+    limits: window.limits,
     fetchHeaders: new Headers({
       'X-Shopify-Shop-Domain': window.xdomain,
       'X-Token': window.xtoken,
