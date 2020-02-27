@@ -189,7 +189,7 @@ $minion->route('POST /app/@', function($minion, $url) {
 
     if (isset($paths[0]) && $paths[0] == 'webhook') {
 
-      //Shopify::validateWebhook();
+      Shopify::validateWebhook();
 
     } else {
 

@@ -1038,7 +1038,7 @@ Class App
 
             if ($billing['plan'] == 'unlimited') {
 
-              $limit = null;
+              $limit = 'unlimited';
 
             }
 
@@ -1054,27 +1054,27 @@ Class App
         $remove_smses = [];
 
         foreach ($mails as $mail) {
-          if ($limit == null || $limit > 0) {
+          if ($limit === 'unlimited' || $limit > 0) {
             Local::queue([
               'shop' => $_SESSION['shop'],
               'type' => 'email',
               'data' => $mail
             ]);
 
-            if ($limit != null) {
-              $limit--;
+            if ($limit !== 'unlimited') {
+              $limit = $limit - 1;
               $remove_mails[] = $mail['email'];
             }
           }
         }
 
         foreach ($smses as $sms) {
-          if ($limit == null || $limit > 0) {
+          if ($limit === 'unlimited' || $limit > 0) {
             $this->API('sms', $sms);
 
             if (isset($billing['plan']) && $billing['plan'] == 'pro') {
               if ($billing['status'] == 'active') {
-                $limit--;
+                $limit = $limit - 1;
                 $remove_smses[] = $mail['number'];
               }
             } else {
@@ -1083,13 +1083,13 @@ Class App
           }
         }
 
-        if ($limit != null) {
+        if ($limit !== 'unlimited') {
 
           $limit_mails_on = count($mails) > count($remove_mails);
           $limit_smses_on = count($smses) > count($remove_smses);
 
-          $mails = array_intersect($mails, $remove_mails);
-          $smses = array_intersect($smses, $remove_smses);
+          $mails = array_slice($mails, 0, count($remove_mails));
+          $smses = array_slice($smses, 0, count($remove_smses));
         }
 
         $stats = Local::get('stats');
@@ -1124,7 +1124,7 @@ Class App
           $stats['numbers'] = $stats['numbers'] - count($smses);
         }
 
-        if ($limit == null) {
+        if ($limit === 'unlimited') {
 
           $delete = true;
 
@@ -1164,6 +1164,8 @@ Class App
             }
           }
 
+          unset($item['_id']);
+
           Helpers::db()->products->updateOne(
             ['_id' => $doc['_id']],
             ['$set' => $item]
@@ -1171,7 +1173,7 @@ Class App
 
         }
 
-        $limits['notifications']['value'] = count($mails) + count($smses);
+        $limits['notifications']['value'] = $limits['notifications']['value'] + count($mails) + count($smses);
         Local::put('limits', $limits);
         Local::put('stats', $stats);
 
