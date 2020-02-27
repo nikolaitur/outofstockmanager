@@ -56,14 +56,14 @@
 
                   <div class="row">
                     <strong class="q"><span class="badge badge-info">4</span> I want to manually manage appearance of the form. Are there any triggers?</strong>
-                    Yes, you can use the codes to below to show / hide the Out of Stock Manager form.
+                    Yes, you can use the codes to below to show / hide the Out of Stock Manager form. When you show the form through trigger - additional scripts render required parameters to display it correctly.
 
                     <pre class="my-2" v-pre>MMOOSM.trigger('show', productId, variantId, domEl)</pre>
                     <pre class="my-2" v-pre>MMOOSM.trigger('hide', domEl)</pre>
 
                     where
 
-                    <pre class="mt-2 mb-4" v-pre><strong>productId</strong> - id of the current product <br/>strong>variantId</strong> - id of the selected variant of the product <br/><strong>domEl</strong> - OOSM form dom element <br/>
+                    <pre class="mt-2 mb-4" v-pre><strong>productId</strong> - id of the current product <br/><strong>variantId</strong> - id of the selected variant of the product <br/><strong>domEl</strong> - OOSM form dom element <br/>
                     </pre>
                     
                   </div>
