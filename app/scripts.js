@@ -35,7 +35,7 @@ MMOOSM.trigger('hide', domEl)
 			var self = this;
 
 			if (window.Shopify.checkout) {
-				this.checkout()
+				this.checkout();
 			}
 
 			this.ready('form[action="/cart/add"]', function(el) {
@@ -240,7 +240,7 @@ MMOOSM.trigger('hide', domEl)
 				{ el: 'div', class: 'error', val: '' }
 				]
 			}
-			]
+			];
 		}
 
 		generateDOM(dom) {
@@ -325,7 +325,7 @@ MMOOSM.trigger('hide', domEl)
 						name: c.nativeName
 					});
 				});
-			})
+			});
 		}
 
 		generateCountriesDOM() {
@@ -600,21 +600,21 @@ MMOOSM.trigger('hide', domEl)
 									wrapper.querySelector('.mm-out-of-stock-manager_error').style.display = '';
 									wrapper.querySelector('.mm-out-of-stock-manager_success').style.display = 'block';
 
-									var cookie = self.getCookie('mm-out-of-stock-manager_track')
+									var cookie = self.getCookie('mm-out-of-stock-manager_track');
 
 									if (cookie) {
-										var cookieData = JSON.parse(atob(cookie))
+										var cookieData = JSON.parse(atob(cookie));
 										if (cookieData[data.product_id]) {
-											cookieData[data.product_id].push(data.variant_id)
+											cookieData[data.product_id].push(data.variant_id);
 										} else {
-											cookieData[data.product_id] = [data.variant_id]
+											cookieData[data.product_id] = [data.variant_id];
 										}
 									} else {
-										var cookieData = {}
-										cookieData[data.product_id] = [data.variant_id]
+										var cookieData = {};
+										cookieData[data.product_id] = [data.variant_id];
 									}
 
-									self.setCookie('mm-out-of-stock-manager_track', btoa(JSON.stringify(cookieData)), 30)
+									self.setCookie('mm-out-of-stock-manager_track', btoa(JSON.stringify(cookieData)), 30);
 								}
 							});
 						}
@@ -665,15 +665,15 @@ MMOOSM.trigger('hide', domEl)
 		}
 
 		checkout() {
-			var self = this, cookie = this.getCookie('mm-out-of-stock-manager_track')
+			var self = this, cookie = this.getCookie('mm-out-of-stock-manager_track');
 
 			if (cookie) {
 				var cookieData = JSON.parse(atob(cookie)),
-						shopifyCheckout = window.Shopify.checkout
+						shopifyCheckout = window.Shopify.checkout;
 
 				shopifyCheckout.line_items.forEach(function(item) {
 					if (cookieData[item.product_id]) {
-						var vidIndex = cookieData[item.product_id].indexOf(item.variant_id.toString())
+						var vidIndex = cookieData[item.product_id].indexOf(item.variant_id.toString());
 
 						if (vidIndex != -1) {
 
@@ -684,21 +684,21 @@ MMOOSM.trigger('hide', domEl)
 								order_id: shopifyCheckout.order_id,
 								created_at: shopifyCheckout.created_at,
 								action: 'track'
-							}
+							};
 
 							var url = '//' + window.location.hostname + '/apps/mm-oosm?' + self.params(trackData);
-							self.request('POST', url, function(err, res) {})
+							self.request('POST', url, function(err, res) {});
 
-							cookieData[item.product_id].splice(vidIndex, 1)
+							cookieData[item.product_id].splice(vidIndex, 1);
 
 							if (cookieData[item.product_id].length == 0) {
-								delete cookieData[item.product_id]
+								delete cookieData[item.product_id];
 							}
 
 							if (Object.keys(cookieData).length == 0) {
-								self.deleteCookie('mm-out-of-stock-manager_track')
+								self.deleteCookie('mm-out-of-stock-manager_track');
 							} else {
-								self.setCookie('mm-out-of-stock-manager_track', btoa(JSON.stringify(cookieData)), 30)
+								self.setCookie('mm-out-of-stock-manager_track', btoa(JSON.stringify(cookieData)), 30);
 							}
 						}
 					}
@@ -764,7 +764,7 @@ MMOOSM.trigger('hide', domEl)
 
 		params(obj) {
 			return Object.keys(obj).map(function(k) {
-				return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k])
+				return encodeURIComponent(k) + '=' + encodeURIComponent(obj[k]);
 			}).join('&');
 		}
 
